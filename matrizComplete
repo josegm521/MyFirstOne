@@ -1,0 +1,35 @@
+import java.util.*;
+public class App {
+    public static void main(String[] args) throws Exception {
+        int[][] m = new int[5][5];
+        Random r = new Random();
+        Set<Integer> stInt = new HashSet<Integer> ();
+        for(int i=0; i<m.length; i++){
+            for(int j=0;j<m[i].length; j++){
+                Integer n = r.nextInt(20);
+                if(!stInt.contains(n)){
+                    m[i][j] =  n;
+                }else{
+                    m[i][j] = generateRandom(40,65,stInt);
+                }
+                 System.out.print(m[i][j]+"\t");
+                stInt.add(m[i][j]);
+                    
+            }
+            System.out.print("\n");
+        }
+       
+    }
+    
+    public static int generateRandom(int start, int end, Set<Integer> excludeRows) {
+    Random rand = new Random();
+    int range = end - start + 1;
+
+    int random = rand.nextInt(range) + 1;
+    while(excludeRows.contains(random)) {
+        random = rand.nextInt(range) + 1;
+    }
+
+    return random;
+    }
+}
